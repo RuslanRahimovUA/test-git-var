@@ -1,0 +1,21 @@
+name: Test GitHub Env Vars and Secrets
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Which environment to use (local or production)'
+        required: true
+        default: 'local'
+
+jobs:
+  print-vars:
+    environment: ${{ github.event.inputs.target_env }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo environment and values
+        run: |
+          echo "ENV: ${{ github.event.inputs.target_env }}"
+          echo "VAR: ${{ vars.TEST_GIT_VAR }}"
+          echo "SECRET: ${{ secrets.TEST_GIT_SECRET }}"
