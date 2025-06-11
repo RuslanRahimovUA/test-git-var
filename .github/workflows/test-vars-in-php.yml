@@ -1,0 +1,5 @@
+- name: Create .env file from GitHub vars
+  run: |
+    echo "APP_ENV=${{ github.event.inputs.target_env }}" > .env
+    echo "MY_SHARED_VAR=${{ vars.MY_SHARED_VAR }}" >> .env
+    echo "MY_SHARED_SECRET=${{ secrets.MY_SHARED_SECRET }}" >> .env
